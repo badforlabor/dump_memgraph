@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DotNetZip" Version="1.16.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Core" />
+        <TrimmerRootAssembly Include="Newtonsoft.Json" />
+    </ItemGroup>
+</Project>

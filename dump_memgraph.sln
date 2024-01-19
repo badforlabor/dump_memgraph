@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{C8209928-E252-4AA4-8E2F-1DAA605B8CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dump_memgraph", "dump_memgraph\dump_memgraph.csproj", "{A1E34742-225E-4CBE-B0B1-4A322C86DCC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8209928-E252-4AA4-8E2F-1DAA605B8CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8209928-E252-4AA4-8E2F-1DAA605B8CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8209928-E252-4AA4-8E2F-1DAA605B8CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8209928-E252-4AA4-8E2F-1DAA605B8CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E34742-225E-4CBE-B0B1-4A322C86DCC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E34742-225E-4CBE-B0B1-4A322C86DCC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E34742-225E-4CBE-B0B1-4A322C86DCC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E34742-225E-4CBE-B0B1-4A322C86DCC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
