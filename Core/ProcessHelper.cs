@@ -9,8 +9,13 @@ namespace Core
     public class ProcessHelper
     {
         public const int ExitSucc = 0;
-        
+
         public static int Start(string exePath, string workspace, params string[] args)
+        {
+            return StartImpl(build_ErrorDataReceived, build_LogDataReceived, exePath, workspace, args);
+        }
+
+        static int StartImpl(DataReceivedEventHandler func1, DataReceivedEventHandler func2, string exePath, string workspace, params string[] args)
         {
             string strPathExe = exePath;
             var process = new System.Diagnostics.Process();
@@ -27,8 +32,8 @@ namespace Core
             process.StartInfo.RedirectStandardError = true;
             process.StartInfo.StandardOutputEncoding = System.Text.UTF8Encoding.UTF8;
             process.StartInfo.StandardErrorEncoding = System.Text.UTF8Encoding.UTF8;
-            process.ErrorDataReceived += build_ErrorDataReceived;
-            process.OutputDataReceived += build_LogDataReceived;
+            process.ErrorDataReceived += func1;
+            process.OutputDataReceived += func2;
             process.Start();
             
             process.BeginOutputReadLine();
@@ -155,6 +160,27 @@ namespace Core
             return process.ExitCode;
         }
         
+        public static int Start5(string redirectOutputFile, string exePath, string workspace, params string[] args)
+        {
+            var folder = Path.GetDirectoryName(redirectOutputFile);
+            if (!Directory.Exists(folder))
+            {
+                Directory.Exists(folder);
+            }
+
+            int ret = 0;
+            using (var file = File.Open(redirectOutputFile, FileMode.OpenOrCreate))
+            {
+                void Func2(object sender, DataReceivedEventArgs e)
+                {
+                    file.Write(UTF8Encoding.UTF8.GetBytes(e.Data));
+                }
+                ret = StartImpl(Func2, Func2, exePath, workspace, args);
+            }
+
+            return ret;
+        }
+        
         public static void KillProcess(string exeName)
         {
             bool bFind = false;
@@ -200,6 +226,5 @@ namespace Core
             }
             Logger.Log($"process list end...");
         }
-        
     }
 }

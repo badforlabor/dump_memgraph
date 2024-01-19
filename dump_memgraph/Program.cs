@@ -81,13 +81,13 @@ class Program
         var tempFolder = "temp";
         var workspace = rootFolder;
         // heap -SortBySize xxx.memgraph > 1.txt
-        var ret = ProcessHelper.Start("", workspace, "heap", "-SortBySize", fileName, ">", $"{tempFolder}/1.txt");
+        var ret = ProcessHelper.Start5($"{tempFolder}/1.txt", "heap", workspace, "-SortBySize", fileName);
         Debug.Assert(ret == 0);
 
         var marks = Parse1($"{rootFolder}/{tempFolder}", "1.txt");
         
         // all命令
-        ret = ProcessHelper.Start("", workspace, "heap", fileName, "-addresses", "all", ">", $"{tempFolder}/2.txt");
+        ret = ProcessHelper.Start5($"{tempFolder}/2.txt", "heap", workspace, fileName, "-addresses", "all");
         Debug.Assert(ret == 0);
         int markIdx = 0;
         foreach(var mark in marks)
@@ -98,7 +98,7 @@ class Program
             var addressLit = Parse2($"{rootFolder}/{tempFolder}", "2.txt", mark);
             foreach (var address in addressLit)
             {
-                ret = ProcessHelper.Start("", workspace, "malloc_history", fileName, address.Address, ">", $"{tempFolder}/3-temp-{markIdx}.txt");
+                ret = ProcessHelper.Start5($"{tempFolder}/3-temp-{markIdx}.txt", "", workspace, "malloc_history", fileName, address.Address);
                 Debug.Assert(ret == 0);
                 
                 // 再次解析
